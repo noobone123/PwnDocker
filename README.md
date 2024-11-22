@@ -10,7 +10,7 @@ The default user is `hacker`, the default working directory is `/home/hacker/wor
 ```shell
 git clone https://github.com/noobone123/PwnDocker.git
 cd PwnDocker
-docker build --build-arg UBUNTU_VERSION=22.04 -t PwnDocker:22.04 .
+docker build --build-arg UBUNTU_VERSION=22.04 -t pwn_docker:22.04 .
 ```
 Ubuntu versions >= 22.04 are supported.
 
@@ -18,10 +18,9 @@ Ubuntu versions >= 22.04 are supported.
 ```shell
 docker run -itd \                            # ...
     --cap-add=SYS_PTRACE \                   # Enable ptrace capabilities (required for debugging)
-    --name pwn_docker \                      # Optional: Assign a custom name to the container for easier management
     -v /path/to/host/workspace:/home/hacker/workspace \  # Optional: Mount the host workspace directory to the container
     --privileged \                           # Optional: Grant privileged access (needed for certain tools like gdbserver)
-    PwnDocker:22.04                          # The image name and tag
+    pwn_docker:22.04                          # The image name and tag
 ```
 Feel free to adapt the commands above to suit your specific setup and use case.
 

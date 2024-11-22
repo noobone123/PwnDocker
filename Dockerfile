@@ -58,6 +58,13 @@ RUN dpkg --add-architecture i386 && \
     tzdata --fix-missing && \
     rm -rf /var/lib/apt/list/*
 
+# install sasquatch
+RUN git clone https://github.com/devttys0/sasquatch /opt/sasquatch && \
+    cd /opt/sasquatch && \
+    wget https://raw.githubusercontent.com/devttys0/sasquatch/82da12efe97a37ddcd33dba53933bc96db4d7c69/patches/patch0.txt && \
+    mv patch0.txt patches && \
+    ./build.sh
+
 # install one_gadgets and seccomp-tools
 RUN gem install one_gadget seccomp-tools && rm -rf /var/lib/gems/2.*/cache/*
 
@@ -124,14 +131,6 @@ RUN python3 -m pip install -U pip && \
     boofuzz \
     setuptools \
     pycrypto
-
-# install sasquatch
-RUN sudo apt-get install  && \
-    git clone https://github.com/devttys0/sasquatch && \
-    cd sasquatch && \
-    wget https://raw.githubusercontent.com/devttys0/sasquatch/82da12efe97a37ddcd33dba53933bc96db4d7c69/patches/patch0.txt && \
-    mv patch0.txt patches && \
-    ./build.sh
 
 # # install gef and pwngdb ...
 # RUN bash -c "$(wget https://gef.blah.cat/sh -O -)"
