@@ -55,6 +55,7 @@ RUN dpkg --add-architecture i386 && \
     qemu-user \
     qemu-system \
     binwalk mtd-utils zlib1g-dev liblzma-dev gzip bzip2 tar squashfs-tools liblzo2-dev \
+    telnet ftp ranger ripgrep \
     tzdata --fix-missing && \
     rm -rf /var/lib/apt/list/*
 
@@ -130,7 +131,9 @@ RUN python3 -m pip install -U pip && \
     ipython \
     boofuzz \
     setuptools \
-    pycrypto
+    pycrypto 
+
+RUN python3 -m pip install --user unblob
 
 # # install gef and pwngdb ...
 # RUN bash -c "$(wget https://gef.blah.cat/sh -O -)"
